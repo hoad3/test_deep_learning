@@ -25,7 +25,7 @@ for dirname, _, filenames in os.walk('/content/drive/MyDrive/archive(1)/test'):
 cols = list(pd.read_csv(dataset_path[1], nrows=1))
 
 def load_file(path):
-    # data = pd.read_csv(path, sep=',')
+
     data = pd.read_csv(path,
                    usecols =[i for i in cols if i != " Source IP"
                              and i != ' Destination IP' and i != 'Flow ID'
@@ -110,13 +110,11 @@ from keras.layers import Dense,Embedding,Dropout,Flatten,MaxPooling1D,LSTM,Conv1
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import train_test_split
 
-# Load and preprocess your data (replace this with your actual data loading and preprocessing)
-# Assuming 'samples' contains your features and labels
 features = samples.drop(' Label', axis=1)
 labels = samples[' Label']
 X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.2, random_state=42)
 
-# Callback to print training progress
+
 class PrintTrainingProgress(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
         print(f"\nEpoch {epoch + 1}/{self.params['epochs']}")
